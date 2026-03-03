@@ -69,9 +69,9 @@ export async function startServer({
   const server = new MastraServer({ app, mastra, prefix: "/mastra" });
   await server.init();
 
-  // Serve static assets from ./public (relative to cwd, i.e. dist/public)
-  app.use("/assets/*", serveStatic({ root: "./public" }));
-  app.use("/favicon*", serveStatic({ root: "./public" }));
+  // Serve static assets from ./web (relative to cwd, i.e. dist/web)
+  app.use("/assets/*", serveStatic({ root: "./web" }));
+  app.use("/favicon*", serveStatic({ root: "./web" }));
 
   // SPA fallback — all non-API routes return index.html
   app.use("*", async (c, next) => {
@@ -79,7 +79,7 @@ export async function startServer({
     if (path.startsWith("/api") || path.startsWith("/mastra")) {
       return next();
     }
-    return serveStatic({ root: "./public", path: "/index.html" })(c, next);
+    return serveStatic({ root: "./web", path: "/index.html" })(c, next);
   });
 
   serve({ fetch: app.fetch, port });

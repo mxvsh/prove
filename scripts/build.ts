@@ -1,5 +1,6 @@
 import { readdir, cp, rm, mkdir, copyFile } from "fs/promises";
-import { join, resolve } from "path";import { spawnSync } from "child_process";
+import { join, resolve } from "path";
+import { spawnSync } from "child_process";
 
 const root = resolve(import.meta.dir, "..");
 const packagesDir = join(root, "packages");
@@ -75,13 +76,15 @@ if (webResult.status !== 0) {
   process.exit(1);
 }
 
-// Copy apps/web/dist → dist/public
+// Copy apps/web/dist → dist/web and also merge apps/web/public into it
 const webDistDir = join(root, "apps", "web", "dist");
-const publicDir = join(distDir, "public");
-await rm(publicDir, { recursive: true, force: true });
-await mkdir(publicDir, { recursive: true });
-await cp(webDistDir, publicDir, { recursive: true });
-console.log(`Copied web build → dist/public`);
+const webPublicDir = join(root, "apps", "web", "public");
+const webOutDir = join(distDir, "web");
+await rm(webOutDir, { recursive: true, force: true });
+await mkdir(webOutDir, { recursive: true });
+await cp(webDistDir, webOutDir, { recursive: true });
+await cp(webPublicDir, webOutDir, { recursive: true });
+console.log(`Copied web build → dist/web`);
 
 // Copy root README → dist/README.md
 await copyFile(join(root, "README.md"), join(distDir, "README.md"));
@@ -105,7 +108,7 @@ const distPkg = {
         ])
       )
     : undefined,
-  files: ["index.js", "public", "README.md"],
+  files: ["index.js", "web", "README.md"],
   dependencies: mergedDeps,
   engines: cliPkg.engines,
 };
