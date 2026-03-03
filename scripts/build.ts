@@ -93,10 +93,15 @@ console.log(`Copied README.md → dist/README.md`);
 // Read CLI package.json as the base for dist/package.json
 const cliPkg = await Bun.file(join(packagesDir, "cli", "package.json")).json();
 
+// Allow CI to stamp the released version via VERSION env var (strips leading "v")
+const releaseVersion = process.env.VERSION
+  ? process.env.VERSION.replace(/^v/, "")
+  : cliPkg.version;
+
 // Build dist package.json: CLI metadata + merged external deps + updated paths
 const distPkg = {
   name: cliPkg.name,
-  version: cliPkg.version,
+  version: releaseVersion,
   description: cliPkg.description,
   type: cliPkg.type,
   main: "./index.js",
