@@ -1,0 +1,15 @@
+{
+  "name": "@prove.ink/storage",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "@prove.ink/core": "workspace:*",
+    "@prove.ink/logger": "workspace:*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

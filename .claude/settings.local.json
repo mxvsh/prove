@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:mastra.ai)",
+      "WebSearch",
+      "Bash(bun install:*)",
+      "Bash(bun add:*)",
+      "WebFetch(domain:hugeicons.com)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}

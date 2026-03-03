@@ -1,0 +1,19 @@
+{
+  "name": "@prove.ink/engine",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "@mastra/core": "1.8.0",
+    "zod": "^3.24.0",
+    "@prove.ink/core": "workspace:*",
+    "@prove.ink/storage": "workspace:*",
+    "@prove.ink/events": "workspace:*",
+    "@prove.ink/logger": "workspace:*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

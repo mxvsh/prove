@@ -1,0 +1,20 @@
+{
+  "name": "prove",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "build:cli": "bun scripts/build.ts",
+    "typecheck": "turbo typecheck"
+  },
+  "devDependencies": {
+    "release-it": "^19.2.4",
+    "turbo": "^2.8.13",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "bun@1.3.5",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
