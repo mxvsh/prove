@@ -5,5 +5,14 @@
   },
   "github": {
     "release": true
+  },
+  "plugins": {
+    	"@release-it/bumper": {
+			"out": [
+				{
+					"file": "packages/cli/package.json"
+				}
+      ]
+    }
   }
 }

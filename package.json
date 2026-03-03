@@ -8,6 +8,7 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
+    "@release-it/bumper": "^7.0.5",
     "release-it": "^19.2.4",
     "turbo": "^2.8.13",
     "typescript": "^5.9.3"
