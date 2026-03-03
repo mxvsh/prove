@@ -4,16 +4,16 @@ import { api } from "../lib/api-client";
 import { useProjectStore } from "../stores/project-store";
 
 function getMastraClientConfig() {
-  const rawUrl = import.meta.env.VITE_MASTRA_BASE_URL ?? "http://localhost:3001";
+  const rawUrl = import.meta.env.VITE_MASTRA_BASE_URL ?? "http://localhost:8674";
   const envPrefix = import.meta.env.VITE_MASTRA_API_PREFIX ?? "/mastra";
 
   let baseUrl = rawUrl.replace(/\/$/, "");
 
   // Allow VITE_MASTRA_BASE_URL to include a path suffix.
   if (baseUrl.endsWith("/mastra")) {
-    baseUrl = baseUrl.slice(0, -"/mastra".length) || "http://localhost:3001";
+    baseUrl = baseUrl.slice(0, -"/mastra".length) || "http://localhost:8674";
   } else if (baseUrl.endsWith("/api")) {
-    baseUrl = baseUrl.slice(0, -"/api".length) || "http://localhost:3001";
+    baseUrl = baseUrl.slice(0, -"/api".length) || "http://localhost:8674";
   }
 
   return { baseUrl, apiPrefix: envPrefix };

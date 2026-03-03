@@ -26,7 +26,7 @@ export interface ServerOptions {
 }
 
 export async function startServer({
-  port = 3001,
+  port = 8674,
   model: modelOverride,
   provider: providerOverride,
   logger,

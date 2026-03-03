@@ -7,11 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'http://localhost:8674',
         changeOrigin: true,
       },
       '/mastra': {
-        target: 'http://localhost:3001',
+        target: 'http://localhost:8674',
         changeOrigin: true,
       },
     },

@@ -18,7 +18,7 @@ export class SSEClient {
 
     const baseUrl =
       import.meta.env.VITE_API_BASE_URL ??
-      (import.meta.env.DEV ? "http://localhost:3001" : "");
+      (import.meta.env.DEV ? "http://localhost:8674" : "");
 
     this.eventSource = new EventSource(
       `${baseUrl}/api/projects/${this.projectId}/stream`

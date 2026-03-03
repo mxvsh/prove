@@ -4,7 +4,7 @@ import { startServer as startProveServer } from "@prove.ink/server";
 import { ensureProveDir, getErrorLogPath } from "./config.js";
 import type { ProveConfig } from "./config.js";
 
-const PORT = parseInt(process.env.PORT ?? "3001", 10);
+const PORT = parseInt(process.env.PORT ?? "8674", 10);
 const IS_PROD = process.env.NODE_ENV === "production";
 
 function createCliLogger(name: string) {
