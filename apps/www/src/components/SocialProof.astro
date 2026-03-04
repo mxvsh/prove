@@ -1,0 +1,27 @@
+---
+// SocialProof — brand logos / trusted-by strip
+const brands = [
+  "Acme Corp",
+  "Global Ventures",
+  "Nebula AI",
+  "Horizon Labs",
+  "Starlight",
+];
+---
+
+<section class="border-t border-border-dark bg-bg-dark py-20">
+  <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+    <p class="font-display mb-8 text-2xl font-light text-white">
+      Trusted by founders building the future
+    </p>
+    <div
+      class="flex flex-wrap items-center justify-center gap-8 opacity-50 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+    >
+      {
+        brands.map((brand) => (
+          <span class="font-display text-xl font-bold">{brand}</span>
+        ))
+      }
+    </div>
+  </div>
+</section>

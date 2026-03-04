@@ -1,0 +1,14 @@
+/* Import shared design tokens and base styles from apps/web */
+@import "../../../web/src/index.css";
+
+/* Override font tokens to match x.html (Newsreader + Noto Sans) */
+@theme {
+  --font-display: "Newsreader", serif;
+  --font-sans: "Noto Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+}

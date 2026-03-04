@@ -1,0 +1,108 @@
+---
+// Hero — full-screen intro with install command
+const taglines = [
+  "Validate your startup idea before your 3AM brain ships it. Turn chaos into clarity in seconds.",
+  "Got a billion-dollar idea at 2:47AM? Prove it before caffeine wears off.",
+  "Before you build it, build the case for it. Clarity in seconds, regret avoided.",
+  "Ship code later. Ship logic first. Turn idea fog into sharp focus.",
+  "Less hype, more proof. Validate your startup idea with AI-powered clarity.",
+  "Midnight genius or Monday mistake? Find out in seconds.",
+  "Stop vibe-coding your future. Pressure-test your idea with precision.",
+  "Dream big. Prove bigger. Clarity without the chaos.",
+  "Before you quit your job, prove your logic. Instant structured validation.",
+  "Turn 'this might work' into 'this makes sense' in seconds.",
+];
+const tagline = taglines[Math.floor(Math.random() * taglines.length)];
+---
+
+<section
+  class="relative flex min-h-[80vh] flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8"
+>
+  <!-- Radial glow backdrop -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div
+      class="absolute -top-[20%] left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
+    ></div>
+  </div>
+
+  <div class="mx-auto max-w-3xl space-y-8">
+    <h1
+      class="font-display text-6xl font-medium tracking-tight text-white sm:text-7xl md:text-8xl lg:text-9xl"
+    >
+      Prove
+    </h1>
+
+    <p id="tagline" class="mx-auto max-w-xl text-lg text-fg-muted-dark sm:text-xl transition-opacity duration-500">
+      {tagline}
+    </p>
+
+    <!-- Install command -->
+    <div class="mx-auto mt-10 w-full max-w-xl">
+      <div
+        id="cmd-box"
+        class="group relative flex h-14 w-full items-center rounded-xl border border-border-dark bg-surface-dark transition-all hover:border-primary/40 sm:h-16"
+      >
+        <div class="flex h-full w-12 items-center justify-center text-fg-muted-dark">
+          <span class="material-symbols-outlined text-[20px]">terminal</span>
+        </div>
+        <span class="flex-1 select-all font-mono text-sm text-white sm:text-base">
+          npx validate-idea@latest
+        </span>
+        <div class="pr-2">
+          <button
+            id="copy-btn"
+            class="inline-flex h-10 w-[80px] items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:h-12 sm:text-base"
+            aria-label="Copy command"
+          >
+            <span id="copy-label">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs text-fg-muted-dark">
+        <span class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">check_circle</span>
+          Open Source
+        </span>
+        <span class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">check_circle</span>
+          Completely Local
+        </span>
+        <span class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">check_circle</span>
+          Instant Analysis
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Trigger shine effect on tagline after page load
+  window.addEventListener("load", () => {
+    const tagline = document.getElementById("tagline");
+    if (tagline) {
+      setTimeout(() => {
+        tagline.classList.add("status-shine");
+      }, 400);
+    }
+  });
+
+  const btn = document.getElementById("copy-btn");
+  const label = document.getElementById("copy-label");
+
+  btn?.addEventListener("click", async () => {
+    await navigator.clipboard.writeText("npx validate-idea@latest");
+    if (label) {
+      label.textContent = "Copied!";
+      btn.classList.add("bg-success", "hover:bg-success/90");
+      btn.classList.remove("bg-primary", "hover:bg-primary/90");
+      setTimeout(() => {
+        label.textContent = "Copy";
+        btn.classList.remove("bg-success", "hover:bg-success/90");
+        btn.classList.add("bg-primary", "hover:bg-primary/90");
+      }, 2000);
+    }
+  });
+</script>
