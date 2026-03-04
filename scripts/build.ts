@@ -104,6 +104,10 @@ const distPkg = {
   version: releaseVersion,
   description: cliPkg.description,
   type: cliPkg.type,
+  repository: {
+    type: "git",
+    url: "https://github.com/mxvsh/prove",
+  },
   main: "./index.js",
   bin: cliPkg.bin
     ? Object.fromEntries(
