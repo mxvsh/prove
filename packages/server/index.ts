@@ -15,6 +15,11 @@ import {
 import { createCustomRoutes } from "./app.js";
 import { applyProviderKey, resolveModel, resolveProvider } from "./config.js";
 import type { Logger } from "@prove.ink/logger";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const WEB_ROOT = join(__dirname, "web");
 
 export interface ServerOptions {
   port?: number;
@@ -69,9 +74,9 @@ export async function startServer({
   const server = new MastraServer({ app, mastra, prefix: "/mastra" });
   await server.init();
 
-  // Serve static assets from ./web (relative to cwd, i.e. dist/web)
-  app.use("/assets/*", serveStatic({ root: "./web" }));
-  app.use("/favicon*", serveStatic({ root: "./web" }));
+  // Serve static assets from web dir relative to this file
+  app.use("/assets/*", serveStatic({ root: WEB_ROOT }));
+  app.use("/favicon*", serveStatic({ root: WEB_ROOT }));
 
   // SPA fallback — all non-API routes return index.html
   app.use("*", async (c, next) => {
@@ -79,7 +84,7 @@ export async function startServer({
     if (path.startsWith("/api") || path.startsWith("/mastra")) {
       return next();
     }
-    return serveStatic({ root: "./web", path: "/index.html" })(c, next);
+    return serveStatic({ root: WEB_ROOT, path: "/index.html" })(c, next);
   });
 
   serve({ fetch: app.fetch, port });
