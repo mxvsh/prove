@@ -1,6 +1,6 @@
 {
   "name": "validate-idea",
-  "version": "0.0.0-beta.1",
+  "version": "0.1.0-beta.1",
   "description": "Validate your startup idea with AI-powered research",
   "type": "module",
   "bin": {
