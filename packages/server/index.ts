@@ -76,7 +76,7 @@ export async function startServer({
 
   // Serve static assets from web dir relative to this file
   app.use("/assets/*", serveStatic({ root: WEB_ROOT }));
-  app.use("/favicon*", serveStatic({ root: WEB_ROOT }));
+  app.use("/favicon.ico", serveStatic({ root: WEB_ROOT }));
   app.use("/prove.png", serveStatic({ root: WEB_ROOT }));
 
   // SPA fallback — all non-API routes return index.html
