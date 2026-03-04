@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  pages: write
 
 jobs:
   publish:
@@ -43,3 +44,42 @@ jobs:
       - name: Publish
         run: npm publish --provenance --access public --tag latest
         working-directory: dist
+
+  deploy-www:
+    name: Build & deploy www
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build Astro site
+        run: bun run build
+        working-directory: apps/www
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/www/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
